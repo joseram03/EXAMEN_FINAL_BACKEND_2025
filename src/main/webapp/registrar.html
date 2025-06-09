@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrar Servicio</title>
+</head>
+<body>
+<h1>Registrar Servicio</h1>
+<form id="servicioForm">
+    <label>Vehículo ID: <input type="number" name="vehiculoId" required></label><br>
+    <label>Fecha: <input type="date" name="fecha" required></label><br>
+    <label>Descripción: <input type="text" name="descripcion" required></label><br>
+    <label>Kilometraje: <input type="number" name="kilometraje" required></label><br>
+    <label>Costo Total: <input type="number" name="costoTotal" required></label><br><br>
+
+    <h3>Detalles</h3>
+    <div id="detallesContainer"></div>
+    <button type="button" onclick="agregarDetalle()">Agregar Detalle</button><br><br>
+
+    <button type="submit">Enviar Servicio</button>
+</form>
+
+<br><hr><br>
+
+<button onclick="location.href='consultar.html'">Ir a Consultar Servicios</button>
+
+<script>
+    let detalles = [];
+
+    function agregarDetalle() {
+        const descripcion = prompt("Descripción del detalle:");
+        const costo = parseFloat(prompt("Costo del detalle:"));
+        const repuestos = prompt("IDs de repuestos separados por coma (ej: 1,2)").split(',').map(id => ({id: parseInt(id)}));
+        const mecanicos = prompt("IDs de mecánicos separados por coma (ej: 1,2)").split(',').map(id => ({id: parseInt(id)}));
+
+        detalles.push({ descripcion, costo, repuestos, mecanicos });
+
+        const container = document.getElementById("detallesContainer");
+        container.innerHTML += `<p>${descripcion} - ${costo} (Repuestos: ${repuestos.length}, Mecánicos: ${mecanicos.length})</p>`;
+    }
+
+    document.getElementById("servicioForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        const form = event.target;
+
+        const servicio = {
+            vehiculo: { id: parseInt(form.vehiculoId.value) },
+            fecha: form.fecha.value,
+            descripcion: form.descripcion.value,
+            kilometraje: parseInt(form.kilometraje.value),
+            costoTotal: parseFloat(form.costoTotal.value),
+            detalles: detalles
+        };
+
+        fetch("/taller/api/servicios", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(servicio)
+        })
+            .then(res => res.ok ? alert("Servicio registrado con éxito") : alert("Error al registrar"))
+            .catch(err => alert("Error: " + err));
+    });
+</script>
+</body>
+</html>
