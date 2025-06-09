@@ -1,0 +1,127 @@
+{
+	"info": {
+		"_postman_id": "6becad08-33b0-4b9d-90e8-63584aa63d8a",
+		"name": "FINAL_BACKEND",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "38779410"
+	},
+	"item": [
+		{
+			"name": "cliente",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Juan Pérez\",\r\n  \"telefono\": \"0981123456\",\r\n  \"direccion\": \"Av. Siempre Viva 742\",\r\n  \"ruc\": \"1234567-8\",\r\n  \"tipoCliente\": \"regular\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/taller/api/clientes"
+			},
+			"response": []
+		},
+		{
+			"name": "vehiculos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"marca\": \"Toyota\",\r\n  \"chapa\": \"ABC123\",\r\n  \"modelo\": \"Corolla\",\r\n  \"anho\": 2020,\r\n  \"tipo\": \"coche\",\r\n  \"cliente\": {\r\n    \"id\": 1\r\n  }\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/taller/api/vehiculos"
+			},
+			"response": []
+		},
+		{
+			"name": "repuestos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Filtro de aire\",\r\n  \"codigo\": \"FILT-AIR-01\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/taller/api/repuestos"
+			},
+			"response": []
+		},
+		{
+			"name": "mecanico",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Carlos Gómez\",\r\n  \"direccion\": \"Calle Taller 123\",\r\n  \"telefono\": \"0971555444\",\r\n  \"fechaIngreso\": \"2023-01-10\",\r\n  \"especialidad\": \"motor\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/taller/api/mecanicos"
+			},
+			"response": []
+		},
+		{
+			"name": "mecanico2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Carlos Gómez\",\r\n  \"direccion\": \"Calle Taller 123\",\r\n  \"telefono\": \"0971555444\",\r\n  \"fechaIngreso\": \"2023-01-10\",\r\n  \"especialidad\": \"motor\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/taller/api/mecanicos"
+			},
+			"response": []
+		},
+		{
+			"name": "servicios",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"vehiculo\": { \"id\": 1 },\r\n  \"fecha\": \"2025-06-01\",\r\n  \"descripcion\": \"Mantenimiento completo\",\r\n  \"kilometraje\": 150000,\r\n  \"costoTotal\": 500000,\r\n  \"detalles\": [\r\n    {\r\n      \"descripcion\": \"Cambio de filtro de aire\",\r\n      \"costo\": 100000,\r\n      \"repuestos\": [{ \"id\": 1 }],\r\n      \"mecanicos\": [{ \"id\": 1 }]\r\n    },\r\n    {\r\n      \"descripcion\": \"Revisión de frenos\",\r\n      \"costo\": 150000,\r\n      \"repuestos\": [],\r\n      \"mecanicos\": [{ \"id\": 2 }]\r\n    }\r\n  ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/taller/api/servicios"
+			},
+			"response": []
+		},
+		{
+			"name": "ping",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/taller/api/servicios"
+			},
+			"response": []
+		}
+	]
+}
